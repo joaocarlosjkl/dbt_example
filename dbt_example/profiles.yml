@@ -5,7 +5,7 @@ dbt_example:
       type: bigquery
       method: service-account
       project: ogum-445823
-      dataset: "{{env_var('DBT_DBNAME', dbt_dw)}}"
+      dataset: "{{ env_var('DBT_DBNAME', 'dbt_dw') }}"
       threads: 4
       keyfile: /home/joao/.dbt/ogum-445823-ed22ca07ee94.json
       
