@@ -1,3 +1,4 @@
+
 name: 'dbt_example'
 version: '1.0.0'
 
@@ -14,22 +15,36 @@ clean-targets:
   - "target"
   - "dbt_packages"
 
+# exemple de variables
+
+vars:
+  ambiente: 'desenvolvimento'
+  data_minima: '2023-01-01'
+  schema_nome: 'desenvolvimento_schema'
+
+
 models:
   dbt_example:
-    staging: # controla tudo que etá dentro da pasta staging
+    staging:
       schema: staging
-      materialized: table #cria uma tabela materializada
+      materialized: table
       tags: ['staging']
-
+    
     intermediate:
-    matrerialized: ephemeral # não materializa a tabela
-    tag: {intermediate}
+      materialized: ephemeral
+      tags: ['intermediate']
 
     marts:
       schema: marts
-      materizlized: table
-      tag: {marts}
+      materialized: table
+      tags: ['marts']
+
 seeds:
   dbt_example:
-    schema: seeds
+    +schema: seeds
     tags: ['seeds']
+    
+snapshots:
+  dbt_example:
+    tags: ['snapshots']
+    schema: snapshots
